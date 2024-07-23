@@ -68,9 +68,13 @@ DYNAMIC EDITABLE, REMOVABLE and ADDABLE<br>
 <button id=DUMP>DUMP</button><br>
 <br>
 
+<script type="importmap">
+{ "imports": { "@satachito/web/": "https://satachito.github.io/jp-object/" } }
+</script>
+
 <script type=module>
 
-import JPObject from './jp-object.js'
+import JPObject from '@satachito/web/jp-object.js'
 
 const
 jpObject = new JPObject(
