@@ -1,0 +1,100 @@
+<!doctype html>
+<title>jp-object demo</title>
+<style>
+body {
+;	margin			: 32px
+}
+.jp-object-undefined::before {
+;	content			: 'undefined'
+;	color			: red
+}
+.jp-object-String::before, .jp-object-String::after {
+;	content			: '"'
+}
+.jp-object-key-name {
+;	width			: 64px
+}
+.jp-object-key-name::placeholder {
+;	color			: green
+}
+
+jp-object > a {
+;	color			: blue
+}
+jp-object > a::before {
+;	content			: '('
+}
+jp-object > a::after {
+;	content			: ') ▹ '
+}
+jp-object[ open ] > a::after {
+;	content			: ') ▿ '
+}
+
+jp-object > div {
+;	padding-left	: 1em
+}
+jp-object > div > .jp-object-remover::before {
+;	color			: red
+;	content			: '×'
+}
+jp-object > div > .jp-object-remover::after {
+;	content			: ' '
+}
+jp-object > div > .jp-object-key::after {
+;	content			: ':'
+}
+</style>
+
+<br>
+
+<h2>DYNAMIC</h2>
+<br>
+<script type=module>
+	import JPObject from './jp-object.js'
+
+	const	$ = new JPObject( 
+		{	jockeys: {
+				"05339": {
+					name		: "Christophe Patrice Lemaire"
+				,	birthday	: 19790520
+				}
+			,	"05212": {
+					name		: "Mirco Demuro"
+				,	birthday	: 19790111
+				}
+			}
+		,	races: [
+				{	date		: 20181125
+				,	name		: "Japan Cup"
+				,	grade		: "G1"
+				,	horses		: [ "Almond Eye" ]
+				}
+			,	{	date		: 20181125
+				,	name		: "Keihan Hai"
+				,	grade		: "G3"
+				,	horses		: [ "Danon Smash" ]
+				}
+			,	{	date		: 20190120
+				,	name		: "Tokai S."
+				,	grade		: "G2"
+				,	horses		: [ "Inti" ]
+				}
+			,	{	date		: 20190120
+				,	name		: "American Jockey Club Cup"
+				,	grade		: "G2"
+				,	horses		: [ "Sciacchetra" ]
+				}
+			]
+		}
+	)
+	const	AC = _ => document.body.appendChild( _ )
+	const	CE = _ => document.createElement( _ )
+
+	AC( $ )
+	AC( CE( 'br' ) )
+
+	setTimeout( () => $.setAttribute( 'open', '' ), 1000 )
+
+</script>
+

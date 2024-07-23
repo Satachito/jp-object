@@ -1,0 +1,133 @@
+<style>
+jp-object {
+;	display			: inline-block
+}
+.jp-object-indent {
+;	padding-left	: 1em
+}
+
+.jp-object-undefined::before {
+;	color			: red
+;	content			: 'undefined'
+}
+.jp-object-null::before {
+;	content			: 'null'
+}
+
+.jp-object-remover {
+;	border			: none
+}
+.jp-object-remover::before {
+;	color			: red
+;	content			: '×'
+}
+.jp-object-remover::after {
+;	content			: ' '
+}
+
+.jp-object-adder {
+;	border			: none
+}
+.jp-object-adder::before {
+;	color			: red
+;	content			: '+'
+}
+.jp-object-adder::after {
+;	content			: ' '
+}
+
+jp-object > textarea {
+;	field-sizing	: content
+}
+</style>
+
+STATIC<br>
+<jp-object id=JOA				></jp-object><br>
+<jp-object id=JOB json='null'	></jp-object><br>
+<jp-object id=JOC json='0'		></jp-object><br>
+<jp-object id=JOD json='"a"'	></jp-object><br>
+<jp-object id=JOE json='false'	></jp-object><br>
+
+<hr>
+STATIC EDITABLE<br>
+<jp-object id=JOF editable				></jp-object><br>
+<jp-object id=JOG editable json='null'	></jp-object><br>
+<jp-object id=JOH editable json='1'		></jp-object><br>
+<jp-object id=JOI editable json='"A"'	></jp-object><br>
+<jp-object id=JOJ editable json='true'	></jp-object><br>
+
+<hr>
+STATIC REMOVABLE and ADDABLE ARRAY<br>
+<jp-object id=JOK removable addable json='[null,0,"a",false]'									></jp-object><br>
+<hr>
+STATIC REMOVABLE and ADDABLE OBJECT<br>
+<jp-object id=JOL removable addable json='{"null":null,"number":1,"string":"A","boolean":true}'	></jp-object><br>
+
+<hr>
+DYNAMIC EDITABLE, REMOVABLE and ADDABLE<br>
+<button id=DUMP>DUMP</button><br>
+<br>
+
+<script type=module>
+
+import JPObject from './jp-object.js'
+
+const
+jpObject = new JPObject(
+	{	jockeys: {
+			"05339": {
+				name		: "Christophe Patrice Lemaire"
+			,	birthday	: 19790520
+			}
+		,	"05212": {
+				name		: "Mirco Demuro"
+			,	birthday	: 19790111
+			}
+		}
+	,	races: [
+			{	date		: 20181125
+			,	name		: "Japan Cup"
+			,	grade		: "G1"
+			,	horses		: [ "Almond Eye" ]
+			}
+		,	{	date		: 20181125
+			,	name		: "Keihan Hai"
+			,	grade		: "G3"
+			,	horses		: [ "Danon Smash" ]
+			}
+		,	{	date		: 20190120
+			,	name		: "Tokai S."
+			,	grade		: "G2"
+			,	horses		: [ "Inti" ]
+			}
+		,	{	date		: 20190120
+			,	name		: "American Jockey Club Cup"
+			,	grade		: "G2"
+			,	horses		: [ "Sciacchetra" ]
+			}
+		]
+	}
+)
+jpObject.setAttribute( 'editable'	, '' )
+jpObject.setAttribute( 'removable'	, '' )
+jpObject.setAttribute( 'addable'	, '' )
+
+JOA.clickReporter =
+JOB.clickReporter =
+JOC.clickReporter =
+JOD.clickReporter =
+JOE.clickReporter =
+JOF.clickReporter =
+JOG.clickReporter =
+JOH.clickReporter =
+JOI.clickReporter =
+JOJ.clickReporter =
+JOK.clickReporter =
+JOL.clickReporter =
+jpObject.clickReporter = $ => console.log( 'ClickReporter: ', $ )
+
+document.body.appendChild( jpObject )
+
+DUMP.onclick = () => console.log( jpObject.$ )
+
+</script>

@@ -1,0 +1,11 @@
+{
+  "name": "jp-object",
+  "version": "1.0.0",
+  "description": "A WebComponent that can display and edit JavaScript objects.",
+  "main": "jp-object.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Satoru Ogura",
+  "license": "ISC"
+}
